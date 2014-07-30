@@ -10,6 +10,12 @@
 
     <packaging>pom</packaging>
 
+	<parent>
+		<groupId>fr.sodifrance.anteo.chitchat</groupId>
+		<artifactId>chitchat</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	
     <!-- The Oracle Service Bus Archetype creates an 'Application' containing two 
          'projects' - a 'normal' Oracle Service Bus project for building services,
          pipelines, etc., and a 'system' project for system resources.  If you do
@@ -18,8 +24,9 @@
          the module list below.
       -->
     <modules>
-        <module>rest-server</module>
+        
         <module>System</module>
+		<module>rest-server</module>
     </modules>
 
 </project>

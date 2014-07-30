@@ -11,4 +11,12 @@
         <artifactId>soa12c-application</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+	
+    <dependencies>
+        <dependency>
+            <groupId>fr.sodifrance.anteo.chitchat</groupId>
+            <artifactId>coherence12c-application</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
