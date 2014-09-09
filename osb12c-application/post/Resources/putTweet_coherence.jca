@@ -4,7 +4,7 @@
   <endpoint-interaction portType="Put_ptt" operation="Put" UICacheItemType="XML">
     <interaction-spec className="oracle.tip.adapter.coherence.jca.CoherenceInteractionSpec">
       <property name="KeyType" value="java.lang.String"/>
-      <property name="CacheName" value="chitchat"/>
+      <property name="CacheName" value="ChitChat"/>
       <property name="TimeToLive" value="0"/>
       <property name="CacheOperation" value="put"/>
     </interaction-spec>

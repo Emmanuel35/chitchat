@@ -9,7 +9,6 @@ elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" 
             <xsd:element name="text" type="xsd:string"/>
             <xsd:element name="thread" type="xsd:integer"/>
             <xsd:element name="createdAt" type="xsd:dateTime" minOccurs="0"/>
-            <xsd:element name="uid" type="xsd:string" minOccurs="0"/>
          </xsd:sequence>
       </xsd:complexType>
    <xsd:element name="tweet" type="t_tweet" />
