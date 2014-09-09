@@ -1,0 +1,15 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/coherence/chitchat/rest-server/chitchatXml" name="chitchatXml-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="chitchatXml.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/coherence/chitchat/rest-server/chitchatXml"/>
+    <wsdl:binding name="Put_ptt-binding" type="chit:Put_ptt" xmlns:chit="http://xmlns.oracle.com/pcbpel/adapter/coherence/chitchat/rest-server/chitchatXml">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="Put">
+            <soap:operation soapAction="Put"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

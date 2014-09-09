@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+
+            xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/coherence/findLatestTweetFromAuthor/request"
+            targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/coherence/findLatestTweetFromAuthor/request"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified"
+
+>
+
+
+  <xsd:element name="QueryRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="parm1" type="xsd:string" minOccurs="1" maxOccurs="1" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+</xsd:schema>

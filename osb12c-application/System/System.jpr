@@ -73,6 +73,14 @@
          <list n="constituent-sets">
             <hash>
                <list n="pattern-filters">
+                  <string v="+*"/>
+               </list>
+               <list n="url-path">
+                  <url path="."/>
+               </list>
+            </hash>
+            <hash>
+               <list n="pattern-filters">
                   <string v="+**"/>
                </list>
                <list n="url-path">
@@ -87,19 +95,13 @@
                   <url path="src/main/scripts/"/>
                </list>
             </hash>
-            <hash>
-               <list n="pattern-filters">
-                  <string v="+pom.xml"/>
-               </list>
-               <list n="url-path">
-                  <url path="."/>
-               </list>
-            </hash>
          </list>
          <list n="pattern-filters">
             <string v="+*"/>
          </list>
-         <list n="url-path"/>
+         <list n="url-path">
+            <url path="."/>
+         </list>
       </hash>
    </hash>
    <hash n="oracle.ide.model.TechnologyScopeConfiguration">
@@ -125,6 +127,33 @@
             <url path="."/>
          </list>
       </hash>
+   </hash>
+   <hash n="oracle.jdevimpl.config.JProjectLibraries">
+      <list n="exportedReferences">
+         <hash>
+            <value n="id" v="junit:junit:4.11:jar"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+      </list>
+      <hash n="internalDefinitions">
+         <list n="libraryDefinitions">
+            <hash>
+               <list n="classPath">
+                  <url protocol="file" path="/${maven:maven.local.repo}junit/junit/4.11/junit-4.11.jar"/>
+               </list>
+               <value n="deployedByDefault" v="true"/>
+               <value n="description" v="junit:junit:4.11:jar"/>
+               <value n="id" v="junit:junit:4.11:jar"/>
+               <value n="locked" v="true"/>
+            </hash>
+         </list>
+      </hash>
+      <list n="libraryReferences">
+         <hash>
+            <value n="id" v="junit:junit:4.11:jar"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+      </list>
    </hash>
    <hash n="oracle.jdevimpl.config.JProjectPaths">
       <url n="outputDirectory" path=".data/maven/classes/"/>

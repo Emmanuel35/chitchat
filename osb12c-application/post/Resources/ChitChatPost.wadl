@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/osb12c-application/post/ChitChatPost" xmlns:ns0="http://anteo-consulting.com/tweet" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="ChitChatPost">Post</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://anteo-consulting.com/tweet" schemaLocation="../../common/xsd/tweet.xsd"/>
+        </xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/chitchat">
+         <method name="POST" soa:wsdlOperation="chitchat">
+            <request>
+               <representation mediaType="application/json" element="cns:tweet" xmlns:cns="http://anteo-consulting.com/tweet"/>
+            </request>
+            <response status="204"/>
+         </method>
+      </resource>
+   </resources>
+</application>

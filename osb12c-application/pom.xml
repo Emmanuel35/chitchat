@@ -1,31 +1,27 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <modelVersion>4.0.0</modelVersion>
 
+	<parent>
+        <groupId>fr.sodifrance.anteo.chitchat</groupId>
+		<version>1.0-SNAPSHOT</version>
+		<artifactId>parent</artifactId>
+    </parent>
+	
     <groupId>fr.sodifrance.anteo.chitchat</groupId>
     <artifactId>osb12c-application</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
-	<parent>
-		<groupId>fr.sodifrance.anteo.chitchat</groupId>
-		<artifactId>chitchat</artifactId>
-		<version>1.0-SNAPSHOT</version>
-	</parent>
-	
-    <!-- The Oracle Service Bus Archetype creates an 'Application' containing two 
-         'projects' - a 'normal' Oracle Service Bus project for building services,
-         pipelines, etc., and a 'system' project for system resources.  If you do
-         not need both projects, you may remove the one you do not need.  Or, if 
-         you need multiple Oracle Service Bus projects, you can add more and update
-         the module list below.
-      -->
     <modules>
-        
         <module>System</module>
+        <module>post</module>
+        <module>thread</module>
+        <module>latest</module>
+        <module>search</module>
+		<module>common</module>
 		<module>rest-server</module>
     </modules>
 

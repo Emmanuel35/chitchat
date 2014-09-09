@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>fr.sodifrance.anteo.chitchat.osb12c-application</groupId>
-    <artifactId>rest-server</artifactId>
+    <artifactId>post</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <packaging>sbar</packaging>
@@ -26,4 +26,5 @@
       </plugin>
     </plugins>
   </build>
+  
 </project>

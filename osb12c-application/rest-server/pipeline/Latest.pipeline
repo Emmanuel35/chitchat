@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="osb12c-application/rest-server/Resources/Latest"/>
+            <con:binding>
+                <con:name>Latest_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/chitchat/rest-server/Latest</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-N3f57c7ff.N29b8f8ba.0.148318c385a.N7a3e">
+            <con:stage id="_StageId-N3f57c7ff.N29b8f8ba.0.148318c385a.N7a3c" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="lat" namespace="http://anteo-consulting.com/latest_request"/>
+                </con:context>
+                <con:actions>
+                    <con2:assign varName="author">
+                        <con1:id>_ActionId-N3f57c7ff.N29b8f8ba.0.148318c385a.N7a38</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>$body/lat:latest_request/lat:author</con1:xqueryText>
+                        </con2:expr>
+                    </con2:assign>
+                    <con2:delete varName="body">
+                        <con1:id>_ActionId-N3f57c7ff.N29b8f8ba.0.148318c385a.N79b5</con1:id>
+                        <con2:location>
+                            <con1:xpathText>./*</con1:xpathText>
+                        </con2:location>
+                    </con2:delete>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-N3f57c7ff.N29b8f8ba.0.148318c385a.N7a3d">
+            <con:stage id="_StageId-N3f57c7ff.N29b8f8ba.0.148318c385a.N79bd" name="Stage2">
+                <con:context/>
+                <con:actions>
+                    <con2:ifThenElse>
+                        <con1:id>_ActionId-N3f57c7ff.N29b8f8ba.0.148318c385a.N79bc</con1:id>
+                        <con2:case id="_BranchId-N3f57c7ff.N29b8f8ba.0.148318c385a.N79bb">
+                            <con2:condition>
+                                <con1:xqueryText>fn:exists($body/tweets)</con1:xqueryText>
+                            </con2:condition>
+                            <con2:actions>
+                                <con2:assign varName="tweet">
+                                    <con1:id>_ActionId-N3f57c7ff.N29b8f8ba.0.148318c385a.N79fa</con1:id>
+                                    <con2:expr>
+                                        <con1:xqueryText>$body/tweets/*[1]</con1:xqueryText>
+                                    </con2:expr>
+                                </con2:assign>
+                                <con2:delete varName="body">
+                                    <con1:id>_ActionId-N3f57c7ff.N29b8f8ba.0.148318c385a.N79f7</con1:id>
+                                    <con2:location>
+                                        <con1:xpathText>./*</con1:xpathText>
+                                    </con2:location>
+                                </con2:delete>
+                                <con2:insert varName="body">
+                                    <con1:id>_ActionId-N3f57c7ff.N29b8f8ba.0.148318c385a.N79f4</con1:id>
+                                    <con2:where>first-child</con2:where>
+                                    <con2:expr>
+                                        <con1:xqueryText>$tweet</con1:xqueryText>
+                                    </con2:expr>
+                                </con2:insert>
+                            </con2:actions>
+                        </con2:case>
+                        <con2:default/>
+                    </con2:ifThenElse>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-N3f57c7ff.N29b8f8ba.0.148318c385a.N7a3b" name="Stage1">
+                <con:context/>
+                <con:actions/>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="PipelinePairNode1">
+                <con:request>request-N3f57c7ff.N29b8f8ba.0.148318c385a.N7a3e</con:request>
+                <con:response>response-N3f57c7ff.N29b8f8ba.0.148318c385a.N7a3d</con:response>
+            </con:pipeline-node>
+            <con:route-node name="FindLatest">
+                <con:context/>
+                <con:actions>
+                    <con3:route>
+                        <con1:id>_ActionId-N3f57c7ff.N29b8f8ba.0.148318c385a.N7a06</con1:id>
+                        <con3:service ref="osb12c-application/rest-server/business/findLatestTweetFromAuthor" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con3:operation>Query</con3:operation>
+                        <con3:outboundTransform>
+                            <con2:insert varName="body">
+                                <con1:id>_ActionId-N3f57c7ff.N29b8f8ba.0.148318c385a.N7a00</con1:id>
+                                <con2:where>first-child</con2:where>
+                                <con2:expr>
+                                    <con1:xqueryText>fn-bea:inlinedXML(concat("&lt;QueryRequest>&lt;param1>",$author,"&lt;/param1>&lt;/QueryRequest>"))</con1:xqueryText>
+                                </con2:expr>
+                            </con2:insert>
+                        </con3:outboundTransform>
+                        <con3:responseTransform/>
+                    </con3:route>
+                </con:actions>
+            </con:route-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

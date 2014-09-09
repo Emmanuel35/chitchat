@@ -1,0 +1,32 @@
+<wsdl:definitions name="ChitChatPost" targetNamespace="http://xmlns.oracle.com/osb12c-application/post/ChitChatPost" xmlns:tns="http://xmlns.oracle.com/osb12c-application/post/ChitChatPost" xmlns:inp1="http://anteo-consulting.com/tweet" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <plnk:partnerLinkType name="ChitChatPost">
+        <plnk:role name="ChitChatPostProvider" portType="tns:ChitChatPost_ptt"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://anteo-consulting.com/tweet" schemaLocation="../../common/xsd/tweet.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="chitchat_inputMessage">
+        <wsdl:part name="request" element="inp1:tweet"/>
+    </wsdl:message>
+    <wsdl:message name="Rest_EmptyMessage"/>
+    <wsdl:portType name="ChitChatPost_ptt">
+        <wsdl:operation name="chitchat">
+            <wsdl:input message="tns:chitchat_inputMessage"/>
+            <wsdl:output message="tns:Rest_EmptyMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ChitChatPost_ptt-binding" type="tns:ChitChatPost_ptt">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="chitchat">
+            <soap:operation soapAction="chitchat"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>
