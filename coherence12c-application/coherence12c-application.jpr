@@ -67,16 +67,35 @@
       <string v="oracle.tip.tools.ide.ess.addin.ESSContentSetProvider/ess-content"/>
       <string v="oracle.jdeveloper.model.PathsConfiguration/cepContentSet"/>
    </list>
-   <value n="defaultPackage" v="fr.sodifrance.anteo.chitchat"/>
+   <value n="defaultPackage" v="fr.sodifrance.anteo.chithat"/>
+   <hash n="ejbModuleContainer">
+      <value n="ejbVersion" v="3.0"/>
+   </hash>
    <hash n="oracle.ide.model.ResourcePaths">
       <hash n="resourcesContentSet">
          <list n="constituent-sets">
+            <hash>
+               <list n="pattern-filters">
+                  <string v="+filename"/>
+               </list>
+               <list n="url-path">
+                  <url path="."/>
+               </list>
+            </hash>
             <hash>
                <list n="pattern-filters">
                   <string v="+**"/>
                </list>
                <list n="url-path">
                   <url path="src/main/resources/"/>
+               </list>
+            </hash>
+            <hash>
+               <list n="pattern-filters">
+                  <string v="+**"/>
+               </list>
+               <list n="url-path">
+                  <url path="src/test/resources/"/>
                </list>
             </hash>
             <hash>
@@ -102,8 +121,12 @@
    <hash n="oracle.ide.model.TechnologyScopeConfiguration">
       <list n="technologyScope">
          <string v="Coherence"/>
+         <string v="EJB"/>
          <string v="Java"/>
          <string v="Maven"/>
+         <string v="WSDL"/>
+         <string v="WSPolicy"/>
+         <string v="WebServices"/>
          <string v="XML"/>
       </list>
    </hash>
@@ -111,29 +134,161 @@
       <value n="internalEncoding" v="Cp1252"/>
       <value n="webIANAEncoding" v="windows-1252"/>
    </hash>
+   <hash n="oracle.jdeveloper.deploy.dt.DeploymentProfiles">
+      <hash n="profileDefinitions">
+         <hash n="chichat-coherence12c">
+            <hash n="appletArchives"/>
+            <hash n="appletFiles">
+               <value n="autoInclude" v="true"/>
+               <list n="selectionFilters">
+                  <string v="oracle.jdevimpl.deploy.common.JavaSelectionFilter"/>
+               </list>
+            </hash>
+            <hash n="archiveOptions">
+               <value n="hasManifest" v="false"/>
+            </hash>
+            <value n="contextRoot"/>
+            <value n="enterpriseAppName" v="chichat-coherence12c"/>
+            <hash n="fileGroups">
+               <list n="groups">
+                  <hash>
+                     <list n="contributors">
+                        <hash>
+                           <value n="type" v="5"/>
+                        </hash>
+                     </list>
+                     <value n="displayName" v="Web Files"/>
+                     <hash n="filters">
+                        <list n="rules">
+                           <hash>
+                              <value n="pattern" v="**"/>
+                              <value n="type" v="0"/>
+                           </hash>
+                        </list>
+                     </hash>
+                     <value n="internalName" v="web-files"/>
+                     <value n="type" v="1"/>
+                  </hash>
+                  <hash>
+                     <list n="contributors">
+                        <hash>
+                           <value n="type" v="2"/>
+                        </hash>
+                        <hash>
+                           <value n="type" v="7"/>
+                        </hash>
+                     </list>
+                     <value n="displayName" v="WEB-INF/classes"/>
+                     <hash n="filters">
+                        <list n="rules">
+                           <hash>
+                              <value n="pattern" v="**"/>
+                              <value n="type" v="0"/>
+                           </hash>
+                        </list>
+                     </hash>
+                     <value n="internalName" v="project-output"/>
+                     <value n="targetWithinJar" v="WEB-INF/classes"/>
+                     <value n="type" v="1"/>
+                  </hash>
+                  <hash>
+                     <value n="displayName" v="WEB-INF/lib"/>
+                     <hash n="filters">
+                        <list n="rules">
+                           <hash>
+                              <value n="pattern" v="**"/>
+                              <value n="type" v="0"/>
+                           </hash>
+                        </list>
+                     </hash>
+                     <value n="internalName" v="libraries"/>
+                     <value n="targetWithinJar" v="WEB-INF/lib"/>
+                     <value n="type" v="3"/>
+                  </hash>
+               </list>
+            </hash>
+            <url n="jarURL" path="deploy/chichat-coherence12c.war"/>
+            <hash n="libraryDependencies">
+               <list n="unselectedLibraries">
+                  <string v="com.oracle.coherence:coherence:12.1.3-0-0:jar"/>
+                  <string v="junit:junit:4.11:jar"/>
+                  <string v="Java EE"/>
+                  <string v="EJB"/>
+                  <string v="JAX-WS Web Services"/>
+                  <string v="Coherence Runtime"/>
+               </list>
+            </hash>
+            <value n="platformType" v="WEBLOGIC"/>
+            <value n="platformVersion" v="12.0.0.0"/>
+            <value n="profileClass" v="oracle.jdeveloper.deploy.war.WarProfile"/>
+            <value n="profileName" v="chichat-coherence12c"/>
+            <hash n="properties">
+               <value n="" v=""/>
+            </hash>
+         </hash>
+      </hash>
+      <list n="profileList">
+         <string v="chichat-coherence12c"/>
+      </list>
+   </hash>
    <hash n="oracle.jdeveloper.maven.compiler.MavenConfiguration">
       <url n="pomfileURL" path="pom.xml"/>
    </hash>
    <hash n="oracle.jdeveloper.model.J2eeSettings">
-      <value n="j2eeWebAppName" v="chitchat-coherence12c-application-webapp"/>
-      <value n="j2eeWebContextRoot" v="chitchat-coherence12c-application-context-root"/>
-   </hash>
-   <hash n="oracle.jdeveloper.model.PathsConfiguration">
-      <hash n="javaContentSet">
+      <value n="j2eeWebAppName" v="chitchat-coherence12c"/>
+      <value n="j2eeWebContextRoot" v="chitchat-coherence12c"/>
+      <hash n="webContentSet">
          <list n="pattern-filters">
             <string v="+**"/>
          </list>
          <list n="url-path">
-            <url path="src/main/java/"/>
+            <url path="src/main/webapp/"/>
          </list>
+      </hash>
+   </hash>
+   <hash n="oracle.jdeveloper.model.PathsConfiguration">
+      <hash n="javaContentSet">
+         <list n="constituent-sets">
+            <hash>
+               <list n="pattern-filters">
+                  <string v="+**"/>
+               </list>
+               <list n="url-path">
+                  <url path="src/main/java/"/>
+               </list>
+            </hash>
+            <hash>
+               <list n="pattern-filters">
+                  <string v="+**"/>
+               </list>
+               <list n="url-path">
+                  <url path="src/test/java/"/>
+               </list>
+            </hash>
+            <hash>
+               <list n="pattern-filters">
+                  <string v="+**"/>
+               </list>
+               <list n="url-path">
+                  <url path="src/main/resources/"/>
+               </list>
+            </hash>
+         </list>
+         <list n="url-path"/>
       </hash>
    </hash>
    <hash n="oracle.jdeveloper.runner.RunConfigurations">
       <hash n="runConfigurationDefinitions">
          <hash n="Default">
             <value n="custom" v="false"/>
-            <value n="javaOptions" v="-Dtangosol.coherence.cacheconfig=&quot;/D:/Users/Emmanuel/Documents/GitHub/chitchat/coherence12c-application/src/main/java/META-INF/coherence-cache-config.xml&quot;"/>
+            <list n="EnvironmentVariables"/>
+            <value n="javaOptions" v=""/>
             <value n="name" v="Default"/>
+            <hash n="oracle.jdevimpl.runner.debug.DebugConfiguration">
+               <value n="remoteParameter:jpda:hostname" v="localhost"/>
+            </hash>
+            <value n="remoteDebuggingProfiling" v="false"/>
+            <value n="targetURL"/>
          </hash>
       </hash>
    </hash>
@@ -143,23 +298,44 @@
             <value n="id" v="com.oracle.coherence:coherence:12.1.3-0-0:jar"/>
             <value n="isJDK" v="false"/>
          </hash>
+         <hash>
+            <value n="id" v="junit:junit:4.11:jar"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
+            <value n="id" v="Java EE"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
+            <value n="id" v="EJB"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
+            <value n="id" v="JAX-WS Web Services"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
+            <value n="id" v="Coherence Runtime"/>
+            <value n="isJDK" v="false"/>
+         </hash>
       </list>
       <hash n="internalDefinitions">
          <list n="libraryDefinitions">
-            <hash>
-               <list n="classPath">
-                  <url protocol="file" path="/${maven:maven.local.repo}com/oracle/coherence/coherence/[12.1.3,12.1.4)/coherence-[12.1.3,12.1.4).jar"/>
-               </list>
-               <value n="description" v="com.oracle.coherence:coherence:[12.1.3,12.1.4):jar"/>
-               <value n="id" v="com.oracle.coherence:coherence:[12.1.3,12.1.4):jar"/>
-               <value n="locked" v="true"/>
-            </hash>
             <hash>
                <list n="classPath">
                   <url protocol="file" path="/${maven:maven.local.repo}com/oracle/coherence/coherence/12.1.3-0-0/coherence-12.1.3-0-0.jar"/>
                </list>
                <value n="description" v="com.oracle.coherence:coherence:12.1.3-0-0:jar"/>
                <value n="id" v="com.oracle.coherence:coherence:12.1.3-0-0:jar"/>
+               <value n="locked" v="true"/>
+            </hash>
+            <hash>
+               <list n="classPath">
+                  <url protocol="file" path="/${maven:maven.local.repo}junit/junit/4.11/junit-4.11.jar"/>
+               </list>
+               <value n="deployedByDefault" v="true"/>
+               <value n="description" v="junit:junit:4.11:jar"/>
+               <value n="id" v="junit:junit:4.11:jar"/>
                <value n="locked" v="true"/>
             </hash>
          </list>
@@ -169,9 +345,32 @@
             <value n="id" v="com.oracle.coherence:coherence:12.1.3-0-0:jar"/>
             <value n="isJDK" v="false"/>
          </hash>
+         <hash>
+            <value n="id" v="junit:junit:4.11:jar"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
+            <value n="id" v="Java EE"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
+            <value n="id" v="EJB"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
+            <value n="id" v="JAX-WS Web Services"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
+            <value n="id" v="Coherence Runtime"/>
+            <value n="isJDK" v="false"/>
+         </hash>
       </list>
    </hash>
    <hash n="oracle.jdevimpl.config.JProjectPaths">
       <url n="outputDirectory" path="target/classes/"/>
+   </hash>
+   <hash n="ResourceBundleOptions">
+      <list n="RegisteredResourceBundles"/>
    </hash>
 </jpr:project>
