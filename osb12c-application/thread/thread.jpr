@@ -201,4 +201,5 @@
    <hash n="ResourceBundleOptions">
       <list n="RegisteredResourceBundles"/>
    </hash>
+   <value n="SOA_TRANSFORMATION_FOLDER_NAME" v="xslt/"/>
 </jpr:project>

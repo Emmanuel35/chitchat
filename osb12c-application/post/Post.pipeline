@@ -53,8 +53,8 @@
                 <con:actions>
                     <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
                         <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57c7ff.N29b8f8ba.0.148318c385a.N7a73</con2:id>
-                        <con1:service ref="post/postWS" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
-                        <con1:operation>search</con1:operation>
+                        <con1:service ref="common/ChitChatEJBService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con1:operation>addTweet</con1:operation>
                         <con1:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
                                 <con4:id xmlns:con4="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57c7ff.4abdb81d.0.148a76bbe73.N7de0</con4:id>

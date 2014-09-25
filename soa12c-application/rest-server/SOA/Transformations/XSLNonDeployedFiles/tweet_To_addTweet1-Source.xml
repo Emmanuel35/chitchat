@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<tweet xmlns="http://anteoconsulting.com/chitchat_POST_request">
+   <author>author7</author>
+   <text>text8</text>
+   <thread>9</thread>
+</tweet>

@@ -1,4 +1,0 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<tns:search xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:inp1="http://anteo-consulting.com/tweet" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.anteo-consulting.com/chitchat" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.anteo-consulting.com/chitchat file:/D:/Users/Emmanuel/Documents/GitHub/chitchat/osb12c-application/common/Resources/ChitChatEJBService.xsd">
-   <text>toto</text>
-</tns:search>

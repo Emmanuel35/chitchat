@@ -5,7 +5,7 @@
       <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <xsd:import namespace="http://anteo-consulting.com/tweet" schemaLocation="../../common/xsd/tweet.xsd"/>
         </xsd:schema>
-      <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/osb12c-application/thread/thread" elementFormDefault="qualified">
+      <schema targetNamespace="http://xmlns.oracle.com/osb12c-application/thread/thread" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
             <element name="thread_params">
                 <complexType>
                     <sequence>
@@ -16,7 +16,7 @@
         </schema>
    </grammars>
    <resources>
-      <resource path="/chitchat/thread/{thread}">
+      <resource path="/{thread}">
          <method name="GET" soa:wsdlOperation="thread">
             <request>
                <param name="thread" style="template" soa:expression="$msg.request/tns:thread" default="" type="xsd:string"/>

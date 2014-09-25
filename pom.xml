@@ -15,7 +15,7 @@
 		<module>coherence-12-application</module>
 		<module>osb12c-application</module>
 		<module>soa12c-application</module>
-	</modules>
+ </modules>
 
 	<properties>
 		<oracleHome>C:\Oracle\Middleware12c</oracleHome>

@@ -14,8 +14,6 @@ import javax.annotation.Resource;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 
-import javax.jws.Oneway;
-import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
@@ -59,8 +57,6 @@ public class ChitChatEJB implements IChitChat {
     }
     
     @Override
-    @WebMethod
-    @Oneway
     public void addTweet(@WebParam(name = "tweet") Tweet tweet) {
         // add tweet
         getCache().put(tweet.getKey(), tweet);
@@ -70,7 +66,6 @@ public class ChitChatEJB implements IChitChat {
     }
 
     @Override
-    @WebMethod
     public Tweets thread(@WebParam(name = "thread") Integer number) {
         //index on threads
         //cache.addIndex(new ReflectionExtractor("getThread"), true, null);
@@ -87,7 +82,6 @@ public class ChitChatEJB implements IChitChat {
     }
 
     @Override
-    @WebMethod
     public Tweets search(@WebParam(name = "text") String text) {
         Set<Map.Entry> entries = getCache().entrySet(
             //QueryHelper.createFilter("text contains ?1" , new Object[]{text})
@@ -102,7 +96,6 @@ public class ChitChatEJB implements IChitChat {
     }
 
     @Override
-    @WebMethod
     public Tweet latest(@WebParam(name = "author") String author) throws Exception {
         
         return (Tweet) getCacheLatest().get(author);

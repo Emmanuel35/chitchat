@@ -7,7 +7,7 @@
         </xsd:schema>
    </grammars>
    <resources>
-      <resource path="/chitchat">
+      <resource path="/">
          <method name="POST" soa:wsdlOperation="chitchat">
             <request>
                <representation mediaType="application/json" element="cns:tweet" xmlns:cns="http://anteo-consulting.com/tweet"/>

@@ -18,14 +18,7 @@
                 <con:context>
                     <con1:userNsDecl prefix="thr" namespace="http://xmlns.oracle.com/osb12c-application/thread/thread"/>
                 </con:context>
-                <con:actions>
-                    <con3:assign varName="threadNumber" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
-                        <con4:id xmlns:con4="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57c7ff.40edda56.0.1485c1ff0a9.N7fd6</con4:id>
-                        <con3:expr>
-                            <con4:xqueryText xmlns:con4="http://www.bea.com/wli/sb/stages/config">$body/thr:thread_params/thr:thread/text()</con4:xqueryText>
-                        </con3:expr>
-                    </con3:assign>
-                </con:actions>
+                <con:actions></con:actions>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="response" name="response-N3f57c7ff.40edda56.0.1485c1ff0a9.N7fd3">
@@ -42,37 +35,36 @@
             <con:route-node name="ToWS" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config">
                 <con:context>
                     <con2:userNsDecl prefix="thr" namespace="http://xmlns.oracle.com/osb12c-application/thread/thread"/>
+                    <con2:userNsDecl prefix="ns0" namespace="http://www.anteo-consulting.com/chitchat"/>
+                    <con2:userNsDecl prefix="twe" namespace="http://anteo-consulting.com/tweet"/>
                 </con:context>
                 <con:actions>
                     <con1:route>
                         <con2:id>_ActionId-N3f57c7ff.40edda56.0.1485c1ff0a9.N7fe8</con2:id>
-                        <con1:service ref="thread/threadWS" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con1:service ref="common/ChitChatEJBService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con1:operation>thread</con1:operation>
                         <con1:outboundTransform>
-                            <con3:delete varName="body" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
-                                <con2:id>_ActionId-N3f57c7ff.40edda56.0.1485c1ff0a9.N7fd9</con2:id>
-                                <con3:location>
-                                    <con2:xpathText>./*</con2:xpathText>
-                                </con3:location>
-                            </con3:delete>
-                            <con3:insert varName="body" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
-                                <con2:id>_ActionId-N3f57c7ff.40edda56.0.1485c1ff0a9.N7fe2</con2:id>
-                                <con3:where>first-child</con3:where>
-                                <con3:expr>
-                                    <con2:xqueryText>fn-bea:inlinedXML("&lt;thread_params>&lt;thread/>&lt;/thread_params>")</con2:xqueryText>
-                                </con3:expr>
-                            </con3:insert>
                             <con3:replace varName="body" contents-only="true" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
                                 <con2:id>_ActionId-N3f57c7ff.40edda56.0.1485c1ff0a9.N7fdc</con2:id>
-                                <con3:location>
-                                    <con2:xpathText>./thr:thread_params/thr:thread</con2:xpathText>
-                                </con3:location>
                                 <con3:expr>
-                                    <con2:xqueryText>$threadNumber</con2:xqueryText>
+                                    <con2:xsltTransform>
+                                        <con2:resource ref="thread/xslt/rest2ws"/>
+                                        <con2:input>$body/thr:thread_params</con2:input>
+                                    </con2:xsltTransform>
                                 </con3:expr>
                             </con3:replace>
                         </con1:outboundTransform>
-                        <con1:responseTransform/>
+                        <con1:responseTransform>
+                            <con3:replace varName="body" contents-only="true" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+                                <con2:id>_ActionId-N3f57d5ab.3f3cc7f5.0.148acdd2e4e.N7fcf</con2:id>
+                                <con3:expr>
+                                    <con2:xsltTransform>
+                                        <con2:resource ref="thread/xslt/ws2rest"/>
+                                        <con2:input>$body/ns0:threadResponse</con2:input>
+                                    </con2:xsltTransform>
+                                </con3:expr>
+                            </con3:replace>
+                        </con1:responseTransform>
                     </con1:route>
                 </con:actions>
             </con:route-node>

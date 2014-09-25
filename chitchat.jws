@@ -31,7 +31,6 @@
       <hash><url n="URL" path="coherence12c-application/coherence12c-application.jpr"/></hash>
       <hash><url n="URL" path="coherence12c-application-Test/coherence12c-application-Test.jpr"/></hash>
       <hash><url n="URL" path="osb12c-application/osb12c-application.jpr"/></hash>
-      <hash><url n="URL" path="osb12c-application/rest-server/rest-server.jpr"/></hash>
       <hash><url n="URL" path="osb12c-application/System/System.jpr"/></hash>
       <hash><url n="URL" path="soa12c-application/client-rest-server/client-rest-server.jpr"/></hash>
       <hash><url n="URL" path="soa12c-application/ihm-rest-server/ihm-rest-server.jpr"/></hash>
