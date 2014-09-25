@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml-bindings xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/oxm" package-name="fr.sodifrance.anteo.chitchat.coherence">
+ <xml-schema namespace="http://xmlns.oracle.com/pcbpel/adapter/coherence" element-form-default= "QUALIFIED"/>
+ <java-types>
+     <java-type name="fr.sodifrance.anteo.chitchat.coherence.Tweet">
+     <xml-root-element/>
+     <xml-type prop-order="author text createdAt thread"/>
+         <java-attributes>
+             <xml-element java-attribute="author"/>
+             <xml-element java-attribute="text"/>
+             <xml-element java-attribute="createdAt"/>
+             <xml-element java-attribute="thread"/>
+         </java-attributes>
+     </java-type>
+ </java-types>
+</xml-bindings>

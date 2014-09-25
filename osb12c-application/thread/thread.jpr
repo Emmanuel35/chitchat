@@ -96,12 +96,26 @@
       <list n="technologyScope">
          <string v="Maven"/>
          <string v="ServiceBusTechnology"/>
+         <string v="WSDL"/>
+         <string v="WSPolicy"/>
          <string v="XML"/>
+         <string v="XML_SCHEMA"/>
       </list>
    </hash>
    <hash n="oracle.jdeveloper.compiler.OjcConfiguration">
       <value n="internalEncoding" v="Cp1252"/>
       <value n="webIANAEncoding" v="windows-1252"/>
+   </hash>
+   <hash n="oracle.jdeveloper.deploy.dt.DeploymentProfiles">
+      <hash n="profileDefinitions">
+         <hash n="thread">
+            <value n="profileClass" v="SbProjectDeployProfile"/>
+            <value n="profileName" v="thread"/>
+         </hash>
+      </hash>
+      <list n="profileList">
+         <string v="thread"/>
+      </list>
    </hash>
    <hash n="oracle.jdeveloper.maven.compiler.MavenConfiguration">
       <url n="pomfileURL" path="pom.xml"/>
@@ -165,6 +179,8 @@
    <hash n="oracle.sb.tooling.ide.core.projects.SbProjectSettings">
       <hash n="sbContentSet">
          <list n="pattern-filters">
+            <string v="-thread.jpr"/>
+            <string v="-target/"/>
             <string v="-.data"/>
             <string v="-.settings"/>
             <string v="+**"/>
@@ -181,5 +197,8 @@
             <url path=".data/contentsets/toplink/"/>
          </list>
       </hash>
+   </hash>
+   <hash n="ResourceBundleOptions">
+      <list n="RegisteredResourceBundles"/>
    </hash>
 </jpr:project>

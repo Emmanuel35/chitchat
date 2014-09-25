@@ -1,2 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dgm:gDiagram xmlns:dgm="http://xmlns.oracle.com/sca/soadgm"/>
+<dgm:gDiagram xmlns:dgm="http://xmlns.oracle.com/sca/soadgm">
+    <dgm:gService name="post">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="171" width="137" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="164" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="post" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/chitchat/rest-server/chitchat#wsdl.interface(chitchat_ptt)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/RestAdapterService20x20px.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>POST</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gService name="latest">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="41" width="137" height="96">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="34" width="156" height="110">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="latest" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/chitchat/rest-server/latest#wsdl.interface(latest_ptt)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/RestAdapterService20x20px.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>latest</dgm:item>
+            <dgm:item>latest2</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gReference name="postWS">
+        <dgm:body borderWidth="2" arcRad="20" X="940" Y="91" width="136" height="120">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="930" Y="84" width="156" height="134">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="postWS" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://www.anteo-consulting.com/chitchat#wsdl.interface(ChitChatEJB)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>search</dgm:item>
+            <dgm:item>thread</dgm:item>
+            <dgm:item>latest</dgm:item>
+            <dgm:item>addTweet</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gComponent name="postMediator">
+        <dgm:body borderWidth="2" arcRad="20" X="586" Y="156" width="130" height="61">
+            <dgm:borderColor r="128" g="92" b="148"/>
+            <dgm:lightBgColor r="208" g="169" b="227"/>
+            <dgm:darkBgColor r="183" g="132" b="212"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="576" Y="149" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="Mediator" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/chitchat/rest-server/chitchat#wsdl.interface(chitchat_ptt)"/>
+        <dgm:outputPort name="postWS" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://www.anteo-consulting.com/chitchat#wsdl.interface(ChitChatEJB)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/mediator/resource/image/mediator_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="latestMediator">
+        <dgm:body borderWidth="2" arcRad="20" X="586" Y="26" width="130" height="61">
+            <dgm:borderColor r="128" g="92" b="148"/>
+            <dgm:lightBgColor r="208" g="169" b="227"/>
+            <dgm:darkBgColor r="183" g="132" b="212"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="576" Y="19" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="latestMediator" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/chitchat/rest-server/latest#wsdl.interface(latest_ptt)"/>
+        <dgm:outputPort name="postWS" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://www.anteo-consulting.com/chitchat#wsdl.interface(ChitChatEJB)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/mediator/resource/image/mediator_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gWireLink source="post" target="postMediator/Mediator" width="2">
+        <dgm:gSegment X1="168" Y1="181" X2="576" Y2="181"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="postMediator/postWS" target="postWS" width="2">
+        <dgm:gSegment X1="726" Y1="181" X2="750" Y2="181"/>
+        <dgm:gSegment X1="750" Y1="181" X2="750" Y2="101"/>
+        <dgm:gSegment X1="750" Y1="101" X2="930" Y2="101"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="latest" target="latestMediator/latestMediator" width="2">
+        <dgm:gSegment X1="168" Y1="51" X2="576" Y2="51"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="latestMediator/postWS" target="postWS" width="2">
+        <dgm:gSegment X1="726" Y1="51" X2="765" Y2="51"/>
+        <dgm:gSegment X1="765" Y1="51" X2="765" Y2="101"/>
+        <dgm:gSegment X1="765" Y1="101" X2="930" Y2="101"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+</dgm:gDiagram>

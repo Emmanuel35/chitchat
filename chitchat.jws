@@ -3,7 +3,7 @@
    <hash n="adrs-workspace-properties">
       <value n="adrs-instance-binding" v="DefaultServer"/>
    </hash>
-   <value n="application-package-prefix" v="fr.sodifrance.anteo.chitchat"/>
+   <value n="application-package-prefix" v="fr.sodifrance.anteo.chithat"/>
    <value n="appTemplateId" v="sbApplicationTemplate"/>
    <hash n="component-versions">
       <value n="oracle.adf.share.dt.migration.jps.JaznCredStoreMigratorHelper" v="11.1.1.1.0"/>
@@ -21,14 +21,15 @@
    </hash>
    <list n="contentSets">
       <string v="oracle.mds.internal.dt.ide.appresources.MDSAppResourceCSProvider/MDSAppContentSet"/>
+      <string v="oracle.jdeveloper.model.PathsConfiguration/ADFContentSet"/>
       <string v="oracle.jdeveloper.model.PathsConfiguration/ApplicationBuildToolContentSet"/>
       <string v="oracle.jdeveloper.model.PathsConfiguration/ApplicationSrcContentSet"/>
-      <string v="oracle.jdeveloper.model.PathsConfiguration/ADFContentSet"/>
-      <string v="oracle.jdeveloper.model.PathsConfiguration/ResourceBundlesContentSet"/>
       <string v="oracle.jdeveloper.model.PathsConfiguration/MobileResourcesContentSet"/>
+      <string v="oracle.jdeveloper.model.PathsConfiguration/ResourceBundlesContentSet"/>
    </list>
    <list n="listOfChildren">
       <hash><url n="URL" path="coherence12c-application/coherence12c-application.jpr"/></hash>
+      <hash><url n="URL" path="coherence12c-application-Test/coherence12c-application-Test.jpr"/></hash>
       <hash><url n="URL" path="osb12c-application/osb12c-application.jpr"/></hash>
       <hash><url n="URL" path="osb12c-application/rest-server/rest-server.jpr"/></hash>
       <hash><url n="URL" path="osb12c-application/System/System.jpr"/></hash>
@@ -42,7 +43,38 @@
          <url n="pomfileURL" path="pom.xml"/>
       </hash>
    </hash>
+   <hash n="oracle.jdeveloper.model.ApplicationLibraries">
+      <hash n="internalDefinitions">
+         <list n="libraryDefinitions">
+            <hash>
+               <list n="classPath">
+                  <url protocol="file" path="/${maven:maven.local.repo}junit/junit/4.11/junit-4.11.jar"/>
+               </list>
+               <value n="deployedByDefault" v="true"/>
+               <value n="description" v="junit:junit:4.11:jar"/>
+               <value n="id" v="junit:junit:4.11:jar"/>
+               <value n="locked" v="true"/>
+            </hash>
+         </list>
+      </hash>
+      <list n="libraryReferences">
+         <hash>
+            <value n="id" v="junit:junit:4.11:jar"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+      </list>
+   </hash>
+   <hash n="oracle.jdeveloper.model.PathsConfiguration">
+      <hash n="ApplicationSrcContentSet">
+         <list n="pattern-filters">
+            <string v="+**"/>
+         </list>
+         <list n="url-path">
+            <url path="src/main/resources/"/>
+         </list>
+      </hash>
+   </hash>
    <hash n="oracle.sb.tooling.ide.core.internal.application.SbApplication">
-      <value n="configContextSessionName" v="OSB-IDE_build_1406753690827"/>
+      <value n="configContextSessionName" v="OSB-IDE_build_1411581237400"/>
    </hash>
 </jws:workspace>

@@ -1,0 +1,39 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/chitchat/rest-server/latest" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="latest">RestService</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.anteo-consulting.com/chitchat" schemaLocation="../WSDLs/ChitChatEJBService.xsd"/>
+        </xsd:schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/chitchat/rest-server/latest" elementFormDefault="qualified">
+            <element name="latest_params">
+                <complexType>
+                    <sequence>
+                        <element name="author" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/chitchat/rest-server/latest" elementFormDefault="qualified">
+            <element name="latest2_params">
+                <complexType>
+                    <sequence>
+                        <element name="author" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+   </grammars>
+   <resources>
+      <resource path="/chitchat/latest/{author}">
+         <method name="GET" soa:wsdlOperation="latest2">
+            <request>
+               <param name="author" style="template" soa:expression="$msg.request/tns:author" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:tweet" xmlns:cns="http://www.anteo-consulting.com/chitchat"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

@@ -11,6 +11,9 @@
         <artifactId>soa12c-application</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
-	
+    <build>
+        <sourceDirectory>SOA/SCA-INF/src/</sourceDirectory>
+        <outputDirectory>SOA/SCA-INF/classes/</outputDirectory>
+        <resources/>
+    </build>
 </project>

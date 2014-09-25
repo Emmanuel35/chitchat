@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/osb12c-application/latest/latestRest" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="latestRest">RestService</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://anteo-consulting.com/tweet" schemaLocation="../../common/xsd/tweet.xsd"/>
+        </xsd:schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/osb12c-application/latest/latestRest" elementFormDefault="qualified">
+            <element name="Operation1_params">
+                <complexType>
+                    <sequence>
+                        <element name="author" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+   </grammars>
+   <resources>
+      <resource path="/chitchat/latest/{author}">
+         <method name="GET" soa:wsdlOperation="Operation1">
+            <request>
+               <param name="author" style="template" soa:expression="$msg.request/tns:author" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:tweet" xmlns:cns="http://anteo-consulting.com/tweet"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

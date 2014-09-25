@@ -13,30 +13,31 @@
         </con:xqConfiguration>
     </con:coreEntry>
     <con:router>
-        <con:pipeline type="request" name="request-N3f57c7ff.N29b8f8ba.0.148318c385a.N7aa8">
-            <con:stage id="_StageId-N3f57c7ff.N29b8f8ba.0.148318c385a.N7aa6" name="insertNewElements">
+        <con:pipeline type="request" name="request-N3f57c7ff.N29b8f8ba.0.148318c385a.N7aa8"/>
+        <con:pipeline type="response" name="response-N3f57c7ff.N29b8f8ba.0.148318c385a.N7aa7"/>
+        <con:pipeline type="error" name="error-N3f57c7ff.4abdb81d.0.148a76bbe73.N7e4c">
+            <con:stage id="_StageId-N3f57c7ff.4abdb81d.0.148a76bbe73.N7e4b" name="Stage1">
                 <con:context>
-                    <con1:userNsDecl prefix="res" namespace="http://TargetNamespace.com/RestService_POST_request"/>
                     <con1:userNsDecl prefix="twe" namespace="http://anteo-consulting.com/tweet"/>
                 </con:context>
                 <con:actions>
-                    <con2:insert varName="body" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
-                        <con3:id xmlns:con3="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57c7ff.N29b8f8ba.0.148318c385a.N7a70</con3:id>
-                        <con2:location>
-                            <con4:xpathText xmlns:con4="http://www.bea.com/wli/sb/stages/config">./twe:tweet</con4:xpathText>
-                        </con2:location>
-                        <con2:where>last-child</con2:where>
-                        <con2:expr>
-                            <con3:xqueryText xmlns:con3="http://www.bea.com/wli/sb/stages/config">fn-bea:inlinedXML(concat("&lt;createdAt>",fn:current-dateTime(),"&lt;/createdAt>"))</con3:xqueryText>
-                        </con2:expr>
-                    </con2:insert>
+                    <con3:report>
+                        <con1:id>_ActionId-N3f57c7ff.4abdb81d.0.148a76bbe73.N7e19</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>$body</con1:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>thread</con3:key>
+                            <con3:varName>body</con3:varName>
+                            <con3:value>
+                                <con1:xpathText>./twe:tweet/twe:thread</con1:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                    <con1:reply isError="true">
+                        <con1:id>_ActionId-N3f57c7ff.4abdb81d.0.148a76bbe73.N7de7</con1:id>
+                    </con1:reply>
                 </con:actions>
-            </con:stage>
-        </con:pipeline>
-        <con:pipeline type="response" name="response-N3f57c7ff.N29b8f8ba.0.148318c385a.N7aa7">
-            <con:stage id="_StageId-N3f57c7ff.N29b8f8ba.0.148318c385a.N7aa5" name="Stage1">
-                <con:context/>
-                <con:actions/>
             </con:stage>
         </con:pipeline>
         <con:flow>
@@ -44,7 +45,7 @@
                 <con:request>request-N3f57c7ff.N29b8f8ba.0.148318c385a.N7aa8</con:request>
                 <con:response>response-N3f57c7ff.N29b8f8ba.0.148318c385a.N7aa7</con:response>
             </con:pipeline-node>
-            <con:route-node name="ToCoherence">
+            <con:route-node name="ToCoherence" error-handler="error-N3f57c7ff.4abdb81d.0.148a76bbe73.N7e4c">
                 <con:context>
                     <con1:userNsDecl prefix="res" namespace="http://TargetNamespace.com/RestService_POST_request"/>
                     <con1:userNsDecl prefix="twe" namespace="http://anteo-consulting.com/tweet"/>
@@ -52,37 +53,32 @@
                 <con:actions>
                     <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
                         <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57c7ff.N29b8f8ba.0.148318c385a.N7a73</con2:id>
-                        <con1:service ref="post/putTweet" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
-                        <con1:operation>Put</con1:operation>
+                        <con1:service ref="post/postWS" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con1:operation>search</con1:operation>
                         <con1:outboundTransform>
-                            <con2:insert varName="outbound" xmlns:con1="http://www.bea.com/wli/sb/stages/config">
-                                <con1:id>_ActionId-N3f57c7ff.40edda56.0.1485c1ff0a9.N7ff8</con1:id>
-                                <con2:location>
-                                    <con1:xpathText>./ctx:transport/ctx:request/tp:headers</con1:xpathText>
-                                </con2:location>
-                                <con2:where>first-child</con2:where>
+                            <con2:replace varName="body" contents-only="true">
+                                <con4:id xmlns:con4="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57c7ff.4abdb81d.0.148a76bbe73.N7de0</con4:id>
                                 <con2:expr>
-                                    <con1:xqueryText>fn-bea:inlinedXML("&lt;jca.coherence.Key/>")</con1:xqueryText>
-                                </con2:expr>
-                            </con2:insert>
-                            <con2:replace varName="outbound" contents-only="true">
-                                <con4:id xmlns:con4="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57c7ff.40edda56.0.1485c1ff0a9.N7ff0</con4:id>
-                                <con2:location>
-                                    <con4:xpathText xmlns:con4="http://www.bea.com/wli/sb/stages/config">./ctx:transport/ctx:request/tp:headers/jca:jca.coherence.Key</con4:xpathText>
-                                </con2:location>
-                                <con2:expr>
-                                    <con4:xqueryText xmlns:con4="http://www.bea.com/wli/sb/stages/config">fn-bea:uuid()</con4:xqueryText>
+                                    <con4:xsltTransform xmlns:con4="http://www.bea.com/wli/sb/stages/config">
+                                        <con4:resource ref="post/Resources/postRequestToWSRequest"/>
+                                        <con4:input>$body/twe:tweet</con4:input>
+                                    </con4:xsltTransform>
                                 </con2:expr>
                             </con2:replace>
-                            <con3:log>
-                                <con4:id xmlns:con4="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57c7ff.5ab51f7a.0.1485b66911f.N7fcc</con4:id>
-                                <con3:logLevel>info</con3:logLevel>
-                            </con3:log>
                         </con1:outboundTransform>
-                        <con1:responseTransform/>
+                        <con1:responseTransform>
+                            <con2:transport-headers copy-all="true">
+                                <con4:id xmlns:con4="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57c7ff.4abdb81d.0.148a76bbe73.N7edd</con4:id>
+                                <con2:header-set>outbound-request</con2:header-set>
+                            </con2:transport-headers>
+                            <con4:reply isError="false" xmlns:con4="http://www.bea.com/wli/sb/stages/config">
+                                <con4:id>_ActionId-N3f57c7ff.4abdb81d.0.148a76bbe73.N7de3</con4:id>
+                            </con4:reply>
+                        </con1:responseTransform>
                     </con1:route>
                 </con:actions>
             </con:route-node>
         </con:flow>
+        <con:partner-links/>
     </con:router>
 </con:pipelineEntry>

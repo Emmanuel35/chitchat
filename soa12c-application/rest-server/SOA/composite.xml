@@ -11,5 +11,64 @@
            xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy"
            xmlns:ui="http://xmlns.oracle.com/soa/designer/"
            xmlns:sca-ext="http://xmlns.oracle.com/sca/1.0-ext">
+  <import namespace="http://xmlns.oracle.com/chitchat/rest-server/chitchat" location="WSDLs/chitchat.wsdl"
+          importType="wsdl"/>
+  <import namespace="http://www.anteo-consulting.com/chitchat" location="WSDLs/ChitChatEJBService.wsdl"
+          importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/chitchat/rest-server/latest" location="WSDLs/latest.wsdl"
+          importType="wsdl"/>
+  <service name="post" ui:wsdlLocation="WSDLs/chitchat.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/chitchat/rest-server/chitchat#wsdl.interface(chitchat_ptt)"/>
+    <binding.rest config="Adapters/chitchat.wadl"/>
+  </service>
+  <service name="latest" ui:wsdlLocation="WSDLs/latest.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/chitchat/rest-server/latest#wsdl.interface(latest_ptt)"/>
+    <binding.rest config="Adapters/latest.wadl"/>
+  </service>
   <property name="productVersion" type="xs:string" many="false">12.1.3.0.0</property>
+  <component name="postMediator">
+    <implementation.mediator src="Mediators/Mediator.mplan"/>
+    <componentType>
+      <service name="Mediator" ui:wsdlLocation="WSDLs/chitchat.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/chitchat/rest-server/chitchat#wsdl.interface(chitchat_ptt)"/>
+      </service>
+      <reference name="postWS" ui:wsdlLocation="WSDLs/ChitChatEJBService.wsdl">
+        <interface.wsdl interface="http://www.anteo-consulting.com/chitchat#wsdl.interface(ChitChatEJB)"/>
+      </reference>
+    </componentType>
+  </component>
+  <component name="latestMediator">
+    <implementation.mediator src="Mediators/latestMediator.mplan"/>
+    <componentType>
+      <service name="latestMediator" ui:wsdlLocation="WSDLs/latest.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/chitchat/rest-server/latest#wsdl.interface(latest_ptt)"/>
+      </service>
+      <reference name="postWS" ui:wsdlLocation="WSDLs/ChitChatEJBService.wsdl">
+        <interface.wsdl interface="http://www.anteo-consulting.com/chitchat#wsdl.interface(ChitChatEJB)"/>
+      </reference>
+    </componentType>
+  </component>
+  <reference name="postWS" ui:wsdlLocation="WSDLs/ChitChatEJBService.wsdl">
+    <interface.wsdl interface="http://www.anteo-consulting.com/chitchat#wsdl.interface(ChitChatEJB)"/>
+    <binding.ws port="http://www.anteo-consulting.com/chitchat#wsdl.endpoint(ChitChatEJBService/ChitChatEJBPort)"
+                location="WSDLs/ChitChatEJBService.wsdl" soapVersion="1.1">
+      <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false">WSDLDriven</property>
+    </binding.ws>
+  </reference>
+  <wire>
+    <source.uri>post</source.uri>
+    <target.uri>postMediator/Mediator</target.uri>
+  </wire>
+  <wire>
+    <source.uri>postMediator/postWS</source.uri>
+    <target.uri>postWS</target.uri>
+  </wire>
+  <wire>
+    <source.uri>latest</source.uri>
+    <target.uri>latestMediator/latestMediator</target.uri>
+  </wire>
+  <wire>
+    <source.uri>latestMediator/postWS</source.uri>
+    <target.uri>postWS</target.uri>
+  </wire>
 </composite>

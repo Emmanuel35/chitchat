@@ -118,12 +118,31 @@
    </hash>
    <hash n="oracle.ide.model.TechnologyScopeConfiguration">
       <list n="technologyScope">
+         <string v="Database"/>
+         <string v="Java"/>
+         <string v="Maven"/>
          <string v="ServiceBusTechnology"/>
+         <string v="TopLink"/>
+         <string v="WSDL"/>
+         <string v="WSPolicy"/>
+         <string v="XML"/>
+         <string v="XML_SCHEMA"/>
       </list>
    </hash>
    <hash n="oracle.jdeveloper.compiler.OjcConfiguration">
       <value n="internalEncoding" v="Cp1252"/>
       <value n="webIANAEncoding" v="windows-1252"/>
+   </hash>
+   <hash n="oracle.jdeveloper.deploy.dt.DeploymentProfiles">
+      <hash n="profileDefinitions">
+         <hash n="post">
+            <value n="profileClass" v="SbProjectDeployProfile"/>
+            <value n="profileName" v="post"/>
+         </hash>
+      </hash>
+      <list n="profileList">
+         <string v="post"/>
+      </list>
    </hash>
    <hash n="oracle.jdeveloper.maven.compiler.MavenConfiguration">
       <url n="pomfileURL" path="pom.xml"/>
@@ -146,6 +165,9 @@
          </list>
       </hash>
       <hash n="javaContentSet">
+         <list n="pattern-filters">
+            <string v="+**"/>
+         </list>
          <list n="url-path">
             <url path="src/main/java/"/>
          </list>
@@ -213,7 +235,19 @@
    </hash>
    <hash n="oracle.sb.tooling.ide.core.projects.SbProjectSettings">
       <hash n="sbContentSet">
+         <list n="constituent-sets">
+            <hash>
+               <list n="pattern-filters">
+                  <string v="+IChitChat.bix"/>
+               </list>
+               <list n="url-path">
+                  <url path="../common/Resources/"/>
+               </list>
+            </hash>
+         </list>
          <list n="pattern-filters">
+            <string v="-post.jpr"/>
+            <string v="-target/"/>
             <string v="-.data"/>
             <string v="-.settings"/>
             <string v="+**"/>
@@ -224,6 +258,10 @@
       </hash>
    </hash>
    <hash n="oracle.toplink.workbench.addin">
+      <hash n="persistence-list">
+         <value n="jpa-version" v="2.0"/>
+         <value n="metamodel-generation-directory" v=""/>
+      </hash>
       <hash n="toplinkContentSet">
          <list n="pattern-filters"/>
          <list n="url-path">
@@ -231,4 +269,8 @@
          </list>
       </hash>
    </hash>
+   <hash n="ResourceBundleOptions">
+      <list n="RegisteredResourceBundles"/>
+   </hash>
+   <value n="SOA_TRANSFORMATION_FOLDER_NAME" v="Resources/"/>
 </jpr:project>

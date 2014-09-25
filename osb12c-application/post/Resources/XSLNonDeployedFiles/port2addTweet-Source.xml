@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<tweet xmlns="http://anteo-consulting.com/tweet">
+   <author>author1</author>
+   <text>text2</text>
+   <thread>3</thread>
+   <createdAt>2014-09-24T18:45:07.557</createdAt>
+</tweet>

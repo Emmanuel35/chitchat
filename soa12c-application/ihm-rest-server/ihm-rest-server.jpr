@@ -70,35 +70,7 @@
    <value n="defaultPackage" v="fr.sodifrance.anteo.chitchat"/>
    <hash n="oracle.ide.model.ResourcePaths">
       <hash n="resourcesContentSet">
-         <list n="constituent-sets">
-            <hash>
-               <list n="pattern-filters">
-                  <string v="+**"/>
-               </list>
-               <list n="url-path">
-                  <url path="src/main/resources/"/>
-               </list>
-            </hash>
-            <hash>
-               <list n="pattern-filters">
-                  <string v="+**"/>
-               </list>
-               <list n="url-path">
-                  <url path="src/main/scripts/"/>
-               </list>
-            </hash>
-            <hash>
-               <list n="pattern-filters">
-                  <string v="+pom.xml"/>
-               </list>
-               <list n="url-path">
-                  <url path="."/>
-               </list>
-            </hash>
-         </list>
-         <list n="pattern-filters">
-            <string v="+*"/>
-         </list>
+         <list n="constituent-sets"/>
          <list n="url-path"/>
       </hash>
    </hash>

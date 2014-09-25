@@ -1,0 +1,9 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<tns:addTweet xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" xmlns:tns="http://www.anteo-consulting.com/chitchat" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.anteo-consulting.com/chitchat file:/D:/Users/Emmanuel/Documents/GitHub/chitchat/osb12c-application/common/Resources/ChitChatEJBService.xsd">
+   <tweet>
+      <author>author1</author>
+      <text>text2</text>
+      <thread>3</thread>
+      <createdAt>2014-09-24T18:45:07.557</createdAt>
+   </tweet>
+</tns:addTweet>

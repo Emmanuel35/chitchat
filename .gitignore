@@ -3,3 +3,15 @@ pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.next
 release.properties
+.project
+*.war
+/coherence12c-application/.classpath
+/osb12c-application/.data
+/osb12c-application/.settings
+/.settings
+/.data
+/osb12c-application/latest/.data
+/osb12c-application/post/.data
+/osb12c-application/search/.data
+/osb12c-application/System/.data
+/osb12c-application/thread/.data

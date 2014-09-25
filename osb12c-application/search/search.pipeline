@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="search/Resources/search"/>
+            <con:binding>
+                <con:name>search_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/osb12c-application/search/search</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-N3f57feb1.N44e2529a.0.1488cf374fc.N7f9a" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+            <con:stage id="_StageId-N3f57feb1.N44e2529a.0.1488cf374fc.N7f99" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="sear" namespace="http://xmlns.oracle.com/osb12c-application/search/search"/>
+                    <con1:userNsDecl prefix="thr" namespace="http://xmlns.oracle.com/osb12c-application/thread/thread"/>
+                </con:context>
+                <con:actions>
+                    <con3:assign varName="textToSearch" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con4:id xmlns:con4="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57feb1.N44e2529a.0.1488cf374fc.N7f98</con4:id>
+                        <con3:expr>
+                            <con4:xqueryText xmlns:con4="http://www.bea.com/wli/sb/stages/config">$body/sear:search_params/sear:text/text()</con4:xqueryText>
+                        </con3:expr>
+                    </con3:assign>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-N3f57feb1.N44e2529a.0.1488cf374fc.N7f97" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config"/>
+        <con:pipeline type="error" name="error-N3f57c7ff.4abdb81d.0.148a76bbe73.N7c53">
+            <con:stage id="_StageId-N3f57c7ff.4abdb81d.0.148a76bbe73.N7c52" name="Stage1">
+                <con:context/>
+                <con:actions>
+                    <con2:report>
+                        <con1:id>_ActionId-N3f57c7ff.4abdb81d.0.148a76bbe73.N7c20</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>$body</con1:xqueryText>
+                        </con2:expr>
+                        <con2:labels>
+                            <con2:key>errorCode</con2:key>
+                            <con2:varName>fault</con2:varName>
+                            <con2:value>
+                                <con1:xpathText>./ctx:errorCode</con1:xpathText>
+                            </con2:value>
+                        </con2:labels>
+                    </con2:report>
+                    <con1:reply isError="true">
+                        <con1:id>_ActionId-N3f57c7ff.4abdb81d.0.148a76bbe73.N7bee</con1:id>
+                    </con1:reply>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="PipelinePairNode1" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+                <con:request>request-N3f57feb1.N44e2529a.0.1488cf374fc.N7f9a</con:request>
+                <con:response>response-N3f57feb1.N44e2529a.0.1488cf374fc.N7f97</con:response>
+            </con:pipeline-node>
+            <con:route-node name="RouteToCoherence" error-handler="error-N3f57c7ff.4abdb81d.0.148a76bbe73.N7c53">
+                <con:context>
+                    <con1:userNsDecl prefix="sear" namespace="http://xmlns.oracle.com/osb12c-application/search/search"/>
+                    <con1:userNsDecl prefix="twe" namespace="http://anteo-consulting.com/tweet"/>
+                </con:context>
+                <con:actions>
+                    <con1:route xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con3:id xmlns:con3="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57feb1.N44e2529a.0.1488cf374fc.N7e36</con3:id>
+                        <con1:service ref="search/searchWS" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con1:operation>search</con1:operation>
+                        <con1:outboundTransform>
+                            <con3:replace varName="body" contents-only="false">
+                                <con4:id xmlns:con4="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57feb1.N44e2529a.0.1488cf374fc.N7e33</con4:id>
+                                <con3:location>
+                                    <con4:xpathText xmlns:con4="http://www.bea.com/wli/sb/stages/config">./sear:search_params</con4:xpathText>
+                                </con3:location>
+                                <con3:expr>
+                                    <con4:xsltTransform xmlns:con4="http://www.bea.com/wli/sb/stages/config">
+                                        <con4:resource ref="search/xslt/searchRequestToWS"/>
+                                        <con4:input>$body</con4:input>
+                                    </con4:xsltTransform>
+                                </con3:expr>
+                            </con3:replace>
+                        </con1:outboundTransform>
+                        <con1:responseTransform>
+                            <con3:transport-headers copy-all="true">
+                                <con4:id xmlns:con4="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57c7ff.4abdb81d.0.148a76bbe73.N7c84</con4:id>
+                                <con3:header-set>outbound-request</con3:header-set>
+                            </con3:transport-headers>
+                            <con3:replace varName="body" contents-only="true">
+                                <con4:id xmlns:con4="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57c7ff.4abdb81d.0.148a76bbe73.N7cb6</con4:id>
+                                <con3:location>
+                                    <con4:xpathText xmlns:con4="http://www.bea.com/wli/sb/stages/config">./twe:tweets</con4:xpathText>
+                                </con3:location>
+                                <con3:expr>
+                                    <con4:xsltTransform xmlns:con4="http://www.bea.com/wli/sb/stages/config">
+                                        <con4:resource ref="search/xslt/wsToSearchResponse"/>
+                                        <con4:input>$body</con4:input>
+                                    </con4:xsltTransform>
+                                </con3:expr>
+                            </con3:replace>
+                        </con1:responseTransform>
+                    </con1:route>
+                </con:actions>
+            </con:route-node>
+        </con:flow>
+        <con:partner-links/>
+    </con:router>
+</con:pipelineEntry>

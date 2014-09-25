@@ -96,12 +96,25 @@
       <list n="technologyScope">
          <string v="Maven"/>
          <string v="ServiceBusTechnology"/>
+         <string v="WSDL"/>
+         <string v="WSPolicy"/>
          <string v="XML"/>
       </list>
    </hash>
    <hash n="oracle.jdeveloper.compiler.OjcConfiguration">
       <value n="internalEncoding" v="Cp1252"/>
       <value n="webIANAEncoding" v="windows-1252"/>
+   </hash>
+   <hash n="oracle.jdeveloper.deploy.dt.DeploymentProfiles">
+      <hash n="profileDefinitions">
+         <hash n="latest">
+            <value n="profileClass" v="SbProjectDeployProfile"/>
+            <value n="profileName" v="latest"/>
+         </hash>
+      </hash>
+      <list n="profileList">
+         <string v="latest"/>
+      </list>
    </hash>
    <hash n="oracle.jdeveloper.maven.compiler.MavenConfiguration">
       <url n="pomfileURL" path="pom.xml"/>
@@ -165,6 +178,8 @@
    <hash n="oracle.sb.tooling.ide.core.projects.SbProjectSettings">
       <hash n="sbContentSet">
          <list n="pattern-filters">
+            <string v="-latest.jpr"/>
+            <string v="-target/"/>
             <string v="-.data"/>
             <string v="-.settings"/>
             <string v="+**"/>
@@ -182,4 +197,5 @@
          </list>
       </hash>
    </hash>
+   <value n="SOA_TRANSFORMATION_FOLDER_NAME" v="xslt/"/>
 </jpr:project>

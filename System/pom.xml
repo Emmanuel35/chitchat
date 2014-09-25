@@ -9,7 +9,7 @@
         <version>12.1.3-0-0</version>
     </parent>
 
-    <groupId>fr.sodifrance.anteo.chitchat</groupId>
+    <groupId>fr.sodifrance.anteo.chithat</groupId>
     <artifactId>System</artifactId>
     <version>1.0-SNAPSHOT</version>
 

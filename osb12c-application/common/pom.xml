@@ -24,7 +24,44 @@
 		 <artifactId>oracle-servicebus-plugin</artifactId>
         <extensions>true</extensions>
       </plugin>
-    </plugins>
+            <plugin>
+                <groupId>com.oracle.adf.plugin</groupId>
+                <artifactId>ojdeploy</artifactId>
+                <version>12.1.3-0-0</version>
+                <configuration>
+                    <ojdeploy>
+                        ${oracleHome}/jdeveloper/jdev/bin/ojdeploy.exe
+                    </ojdeploy>
+                    <workspace>
+                        ${basedir}/../osb12c-application.jws
+                    </workspace>
+                    <project>
+                        common
+                    </project>
+                    <profile>
+                        common
+                    </profile>
+                    <usemaven>
+                        true
+                    </usemaven>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
   </build>
-  
+    <dependencies>
+        <dependency>
+            <groupId>fr.sodifrance.anteo.chitchat</groupId>
+            <artifactId>coherence12c-application</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>gar</type>
+        </dependency>
+    </dependencies>
 </project>
