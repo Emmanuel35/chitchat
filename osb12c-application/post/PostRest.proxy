@@ -6,34 +6,32 @@
             <con:inboundWss processWssHeader="true"/>
         </ser:security>
         <ser:binding type="REST" xsi:type="con:RestBindingType" xmlns:con="http://www.bea.com/wli/sb/services/bindings/config">
-            <con:wsdl ref="search/Resources/search"/>
+            <con:wsdl ref="post/Resources/ChitChatPost"/>
             <con:binding>
-                <con:name>search_ptt-binding</con:name>
-                <con:namespace>http://xmlns.oracle.com/osb12c-application/search/search</con:namespace>
+                <con:name>ChitChatPost_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/osb12c-application/post/ChitChatPost</con:namespace>
             </con:binding>
-            <con:wadl ref="search/Resources/search"/>
+            <con:wadl ref="post/Resources/ChitChatPost"/>
         </ser:binding>
         <oper:operations enabled="true"/>
         <ser:ws-policy>
             <ser:binding-mode>no-policies</ser:binding-mode>
         </ser:ws-policy>
-        <ser:invoke ref="search/search" xsi:type="con1:PipelineRef" xmlns:con1="http://www.bea.com/wli/sb/pipeline/config"/>
+        <ser:invoke ref="post/Post" xsi:type="con1:PipelineRef" xmlns:con1="http://www.bea.com/wli/sb/pipeline/config"/>
         <ser:xqConfiguration>
             <ser:snippetVersion>1.0</ser:snippetVersion>
         </ser:xqConfiguration>
-        <ser:restConfiguration>
-            <ser:enforceSchemaOrder>true</ser:enforceSchemaOrder>
-        </ser:restConfiguration>
     </ser:coreEntry>
     <ser:endpointConfig>
         <tran:provider-id>http</tran:provider-id>
         <tran:inbound>true</tran:inbound>
         <tran:URI>
-            <env:value>/chitchat/search</env:value>
+            <env:value>/chitchat/post</env:value>
         </tran:URI>
         <tran:inbound-properties/>
         <tran:provider-specific xsi:type="http:HttpEndPointConfiguration" xmlns:http="http://www.bea.com/wli/sb/transports/http">
             <http:inbound-properties/>
+            <http:dispatch-policy>wm/ChitChat/Post</http:dispatch-policy>
         </tran:provider-specific>
     </ser:endpointConfig>
 </ser:proxyServiceEntry>

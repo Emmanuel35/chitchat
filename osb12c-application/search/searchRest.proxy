@@ -6,18 +6,18 @@
             <con:inboundWss processWssHeader="true"/>
         </ser:security>
         <ser:binding type="REST" xsi:type="con:RestBindingType" xmlns:con="http://www.bea.com/wli/sb/services/bindings/config">
-            <con:wsdl ref="thread/Resources/thread"/>
+            <con:wsdl ref="search/Resources/search"/>
             <con:binding>
-                <con:name>thread_ptt-binding</con:name>
-                <con:namespace>http://xmlns.oracle.com/osb12c-application/thread/thread</con:namespace>
+                <con:name>search_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/osb12c-application/search/search</con:namespace>
             </con:binding>
-            <con:wadl ref="thread/Resources/thread"/>
+            <con:wadl ref="search/Resources/search"/>
         </ser:binding>
         <oper:operations enabled="true"/>
         <ser:ws-policy>
             <ser:binding-mode>no-policies</ser:binding-mode>
         </ser:ws-policy>
-        <ser:invoke ref="thread/thread" xsi:type="con1:PipelineRef" xmlns:con1="http://www.bea.com/wli/sb/pipeline/config"/>
+        <ser:invoke ref="search/search" xsi:type="con1:PipelineRef" xmlns:con1="http://www.bea.com/wli/sb/pipeline/config"/>
         <ser:xqConfiguration>
             <ser:snippetVersion>1.0</ser:snippetVersion>
         </ser:xqConfiguration>
@@ -29,11 +29,12 @@
         <tran:provider-id>http</tran:provider-id>
         <tran:inbound>true</tran:inbound>
         <tran:URI>
-            <env:value>/chitchat/thread</env:value>
+            <env:value>/chitchat/search</env:value>
         </tran:URI>
         <tran:inbound-properties/>
         <tran:provider-specific xsi:type="http:HttpEndPointConfiguration" xmlns:http="http://www.bea.com/wli/sb/transports/http">
             <http:inbound-properties/>
+            <http:dispatch-policy>wm/ChitChat/Search</http:dispatch-policy>
         </tran:provider-specific>
     </ser:endpointConfig>
 </ser:proxyServiceEntry>

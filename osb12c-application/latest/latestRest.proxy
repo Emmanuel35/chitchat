@@ -21,6 +21,9 @@
         <ser:xqConfiguration>
             <ser:snippetVersion>1.0</ser:snippetVersion>
         </ser:xqConfiguration>
+        <ser:restConfiguration>
+            <ser:enforceSchemaOrder>true</ser:enforceSchemaOrder>
+        </ser:restConfiguration>
     </ser:coreEntry>
     <ser:endpointConfig>
         <tran:provider-id>http</tran:provider-id>
@@ -31,6 +34,7 @@
         <tran:inbound-properties/>
         <tran:provider-specific xsi:type="http:HttpEndPointConfiguration" xmlns:http="http://www.bea.com/wli/sb/transports/http">
             <http:inbound-properties/>
+            <http:dispatch-policy>wm/ChitChat/Latest</http:dispatch-policy>
         </tran:provider-specific>
     </ser:endpointConfig>
 </ser:proxyServiceEntry>
